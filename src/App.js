@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./Components/Header";
+import Body from "./Components/Body";
+import AboutUs from "./Components/AboutUs";
+import TeamRegistration from "./Components/TeamRegistration";
+import Teams from "./Components/Teams";
+import ContactUs from "./Components/ContactUs";
+import Donation from "./Components/Donation";
+import Footer from "./Components/Footer";
 
 function App() {
+  const [teams, setTeams] = useState([]);
+
+  const handleTeamRegistration = (team) => {
+    setTeams((prevTeams) => [...prevTeams, team]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <div className="content">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header />
+                  <Body />
+                </>
+              }
+            />
+            <Route
+              path="/TeamRegistration"
+              element={<TeamRegistration onRegister={handleTeamRegistration} />}
+            />
+            <Route path="/ContactUs" element={<ContactUs />} />
+            <Route path="/Teams" element={<Teams teams={teams} />} />
+            <Route path="/Donation" element={<Donation />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
