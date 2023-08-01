@@ -24,7 +24,8 @@ const TeamRegistration = () => {
       return;
     }
 
-    fetch("http://localhost:4000/teams", {
+    // TeamRegistration.js
+    fetch("https://git.heroku.com/masjid-omar.git/teams", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ teamName, players: players.filter(Boolean) }),

@@ -7,7 +7,7 @@ const Teams = () => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/teams")
+    fetch("https://git.heroku.com/masjid-omar.git/teams")
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // log the data here
