@@ -52,8 +52,10 @@ const TeamRegistration = () => {
     <div>
       <div className="logo2">
         <RouterLink to="/">
-          <PiMosqueLight />
-          Masjid Omar
+          <div className="logoContainer">
+            <PiMosqueLight size={30} className="logomos" />
+            <div className="logo">Masjid Omar</div>
+          </div>
         </RouterLink>
       </div>
       <div className="team-registration">
@@ -63,6 +65,7 @@ const TeamRegistration = () => {
             <div className="inputt">Team Name:</div>
             <input
               type="text"
+              className="inputt"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
               required
@@ -79,14 +82,16 @@ const TeamRegistration = () => {
               />
             </label>
           ))}
-          <label>
+          <label className="checkbox-label">
+            I agree to the rules and conditions
             <input
               type="checkbox"
+              className="checkbox"
               checked={agreedToRules}
               onChange={(e) => setAgreedToRules(e.target.checked)}
             />
-            I agree to the rules and conditions
           </label>
+
           <button className="submitbutton" type="submit">
             Register Team
           </button>

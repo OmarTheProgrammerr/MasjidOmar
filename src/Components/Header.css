@@ -89,11 +89,14 @@ nav {
 }
 
 .arrow-animation {
-  position: fixed;
   color: white;
   bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: absolute;
+  right: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* ensures the center of the component aligns with the center of the page */
   animation: bounce 1s infinite;
 }
 .typing-text {
