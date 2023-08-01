@@ -64,7 +64,7 @@ const ContactUs = () => {
         <div className="contact-info">
           <div className="info-item">
             <a
-              href="mailto:MasjidOmarTournament@Gmail.com"
+              href="mailto:neilodeh07@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="theText"

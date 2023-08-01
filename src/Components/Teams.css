@@ -4,12 +4,22 @@
   margin: auto;
   padding: 2rem;
 }
+.teams h2 {
+  font-size: 33px;
+}
 
 .team {
   background-color: #f5f5f5;
   border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
+}
+.team h3 {
+  font-size: 25px;
+}
+.team ul {
+  font-size: 20px;
+  text-align: left;
 }
 
 .team h3 {

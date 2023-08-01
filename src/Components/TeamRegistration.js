@@ -4,12 +4,12 @@ import "./TeamRegistration.css";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
-const TeamRegistration = (props) => {
+const TeamRegistration = () => {
   const [teamName, setTeamName] = useState("");
   const [players, setPlayers] = useState(Array(7).fill(""));
   const [agreedToRules, setAgreedToRules] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false); // New state
-  const [isFading, setIsFading] = useState(false); // New state
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFading, setIsFading] = useState(false);
 
   const handleInputChange = (index, event) => {
     setPlayers(
@@ -23,21 +23,27 @@ const TeamRegistration = (props) => {
       alert("Please agree to the rules before submitting.");
       return;
     }
-    // Pass the new team up to the parent component
-    props.onRegister({ teamName, players: players.filter(Boolean) });
-    // Clear the form
+
+    fetch("http://localhost:4000/teams", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ teamName, players: players.filter(Boolean) }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+
     setTeamName("");
     setPlayers(Array(7).fill(""));
     setAgreedToRules(false);
-    setIsSubmitted(true); // Set submission to true upon successful submission
+    setIsSubmitted(true);
 
-    // Start fading the message after 7 seconds
     setTimeout(() => {
       setIsFading(true);
-      // Then, remove the message completely after the fade out duration (e.g. 2 seconds)
       setTimeout(() => {
         setIsSubmitted(false);
-        setIsFading(false); // Reset the fading state for the next submission
+        setIsFading(false);
       }, 2000);
     }, 2000);
   };
@@ -50,7 +56,6 @@ const TeamRegistration = (props) => {
           Masjid Omar
         </RouterLink>
       </div>
-
       <div className="team-registration">
         <h2>Team Registration</h2>
         <form onSubmit={handleSubmit}>
@@ -65,8 +70,6 @@ const TeamRegistration = (props) => {
           </label>
           {players.map((player, index) => (
             <label key={index} className="large-label">
-              {" "}
-              {/* And here */}
               Player {index + 1}:
               <input
                 type="text"
@@ -87,7 +90,6 @@ const TeamRegistration = (props) => {
           <button className="submitbutton" type="submit">
             Register Team
           </button>
-
           {isSubmitted && (
             <div className={`success-message ${isFading ? "fade-out" : ""}`}>
               Your team has been successfully registered!

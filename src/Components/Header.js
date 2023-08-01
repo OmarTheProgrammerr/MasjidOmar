@@ -83,24 +83,6 @@ const Header = () => {
             />
             Contact Us
           </RouterLink>
-          <RouterLink
-            activeClass="active"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-            className="header-link"
-            onMouseEnter={() => setDonationColor("black")}
-            onMouseLeave={() => setDonationColor("white")}
-            to="/Donation"
-          >
-            <LiaDonateSolid
-              size={25}
-              color={donationColor}
-              className="DonationArrow"
-            />
-            Donations
-          </RouterLink>
         </nav>
       </header>
       <div className="typing-text">

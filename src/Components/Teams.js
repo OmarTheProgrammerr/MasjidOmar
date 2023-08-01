@@ -1,10 +1,21 @@
-// Teams.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Teams.css";
 import { Link } from "react-router-dom";
 import { PiMosqueLight } from "react-icons/pi";
 
-const Teams = (props) => {
+const Teams = () => {
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/teams")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // log the data here
+        setTeams(data);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
+
   return (
     <div>
       <div className="logo2">
@@ -15,13 +26,13 @@ const Teams = (props) => {
       </div>
       <div className="teams">
         <h2>Registered Teams</h2>
-        {props.teams.map((team, index) => (
+        {teams.map((team, index) => (
           <div key={index} className="team">
             <h3>{team.teamName}</h3>
             <ul>
-              {team.players.map(
-                (player, index) => player && <li key={index}>{player}</li>
-              )}
+              {team.players.map((player, index) => (
+                <li key={index}>{player}</li>
+              ))}
             </ul>
           </div>
         ))}
