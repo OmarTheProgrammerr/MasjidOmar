@@ -46,19 +46,13 @@ const Body = () => {
           Transfers to other teams after registration are only allowed after
           contacting Neil Odeh.
         </li>
-        <li>
-          All games will be conducted according to standard FIBA rules unless
-          otherwise stated.
-        </li>
+
         <li>
           All teams and players are expected to conduct themselves with
           sportsmanship and respect for their opponents, referees, and
           spectators.
         </li>
-        <li>
-          All teams are required to have matching uniforms with visible, unique
-          numbers for each player.
-        </li>
+
         <li>
           The team captain is responsible for reporting the results of each
           match within an hour of the match's conclusion.
@@ -70,10 +64,6 @@ const Body = () => {
         <li>
           Teams or players that wish to withdraw from the tournament must notify
           the organizers at the earliest.
-        </li>
-        <li>
-          All participants are expected to adhere to the current COVID-19
-          guidelines as laid out by health authorities.
         </li>
       </ul>
     </div>

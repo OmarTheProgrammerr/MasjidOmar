@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Teams.css";
+import { Link as RouterLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PiMosqueLight } from "react-icons/pi";
 
@@ -19,10 +20,12 @@ const Teams = () => {
   return (
     <div>
       <div className="logo2">
-        <Link to="/">
-          <PiMosqueLight />
-          Masjid Omar
-        </Link>
+        <RouterLink to="/">
+          <div className="logoContainer">
+            <PiMosqueLight size={30} className="logomos" />
+            <div className="logo">Masjid Omar</div>
+          </div>
+        </RouterLink>
       </div>
       <div className="teams">
         <h2>Registered Teams</h2>

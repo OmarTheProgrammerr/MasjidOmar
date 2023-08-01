@@ -4,6 +4,8 @@ import { SiGmail } from "react-icons/si";
 import { FaPhoneAlt } from "react-icons/fa";
 import emailjs from "emailjs-com";
 import "./ContactUs.css";
+import { PiMosqueLight } from "react-icons/pi";
+import { Link as RouterLink } from "react-router-dom";
 
 const ContactUs = () => {
   const emptyForm = {
@@ -50,100 +52,110 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="contact-container">
-      <h1>Contact Us</h1>
-      <div className="contact-intro">
-        <h2>WE ARE HERE TO HELP YOU</h2>
-        <p>
-          We would be thrilled to connect with you and answer all of your
-          questions. Feel free to reach out, as our dedicated team stands
-          prepared to address any inquiries you may have.
-        </p>
-      </div>
-      <div className="contact-sections">
-        <div className="contact-info">
-          <div className="info-item">
-            <a
-              href="mailto:neilodeh07@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="theText"
-            >
-              <span className="icons">
-                <SiGmail />
-              </span>
-              {" neilodeh07@gmail.com"}
-            </a>
+    <div>
+      <div className="logo3">
+        <RouterLink to="/">
+          <div className="logoContainer">
+            <PiMosqueLight size={30} className="logomos" />
+            <div className="logo">Masjid Omar</div>
           </div>
-          <div className="info-item">
-            <a
-              href="tel:+15049124477"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="theText"
-            >
-              <span className="icons">
-                <FaPhoneAlt />
-              </span>{" "}
-              +1 504-912-4477
-            </a>
-          </div>
-          <div className="info-item">
-            <a
-              href="https://www.instagram.com/neilodeh/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="theText"
-            >
-              <BsInstagram className="icons" />
-            </a>
-          </div>
+        </RouterLink>
+      </div>{" "}
+      <div className="contact-container">
+        <h1>Contact Us</h1>
+        <div className="contact-intro">
+          <h2>WE ARE HERE TO HELP YOU</h2>
+          <p>
+            We would be thrilled to connect with you and answer all of your
+            questions. Feel free to reach out, as our dedicated team stands
+            prepared to address any inquiries you may have.
+          </p>
         </div>
-        <div className="separator"></div>
-        <form onSubmit={handleSubmit} className="contact-form">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone"
-            value={form.phone}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            value={form.subject}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            value={form.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-          <button type="submit" disabled={loading}>
-            {loading ? "Submitting..." : "Submit"}
-          </button>
-        </form>
+        <div className="contact-sections">
+          <div className="contact-info">
+            <div className="info-item">
+              <a
+                href="mailto:Neilodeh07@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="theText"
+              >
+                <span className="icons">
+                  <SiGmail />
+                </span>
+                {" Neilodeh07@gmail.com"}
+              </a>
+            </div>
+            <div className="info-item">
+              <a
+                href="tel:+15049124477"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="theText"
+              >
+                <span className="icons">
+                  <FaPhoneAlt />
+                </span>{" "}
+                +1 504-912-4477
+              </a>
+            </div>
+            <div className="info-item">
+              <a
+                href="https://www.instagram.com/neilodeh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="theText"
+              >
+                <BsInstagram className="icons" />
+              </a>
+            </div>
+          </div>
+          <div className="separator"></div>
+          <form onSubmit={handleSubmit} className="contact-form">
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone"
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              value={form.subject}
+              onChange={handleChange}
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              value={form.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+            <button type="submit" disabled={loading}>
+              {loading ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

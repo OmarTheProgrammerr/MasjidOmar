@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto; /* Grow and shrink with the content, but don't shrink below content height */
 }
 
 .App-logo {

@@ -9,6 +9,7 @@ import Teams from "./Components/Teams";
 import ContactUs from "./Components/ContactUs";
 import Donation from "./Components/Donation";
 import Dropdown from "./Components/Dropdown";
+import ScrollToTop from "./Components/ScrollToTop";
 import Footer from "./Components/Footer";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <div className="content">
           <Routes>

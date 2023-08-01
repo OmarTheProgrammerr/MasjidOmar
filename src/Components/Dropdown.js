@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import { GiSpiralArrow as Arrow } from "react-icons/gi";
 import { GiBasketballBasket as MAM } from "react-icons/gi";
 import { PiMosqueLight } from "react-icons/pi";
+import { Link } from "react-scroll";
 import { IoIosArrowRoundBack as Back } from "react-icons/io";
 import { BiSolidBasketball } from "react-icons/bi";
 
@@ -62,21 +63,16 @@ function Dropdown(props) {
     }
     function DropdownItemForGetStarted(props) {
       return (
-        <a
-          href="#body"
+        <Link
+          activeClass="active"
+          to="body"
           className="menu-item"
-          onClick={() => {
-            props.closeDropdown();
-            window.scrollTo({
-              top: document.getElementById("body").offsetTop,
-              behavior: "smooth",
-            });
-          }}
+          onClick={props.closeDropdown} // Add this line
         >
           <span className="icon-button-inside">{props.leftIcon}</span>
           {props.children}
           <span className="icon-right">{props.rightIcon}</span>
-        </a>
+        </Link>
       );
     }
 
