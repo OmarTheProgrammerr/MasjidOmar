@@ -1,11 +1,11 @@
 import "./Dropdown.css";
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import { SiOctopusdeploy as Octopus } from "react-icons/si";
 import { GiSpiralArrow as Arrow } from "react-icons/gi";
 import { GiBasketballBasket as MAM } from "react-icons/gi";
 import { PiMosqueLight } from "react-icons/pi";
 import { IoIosArrowRoundBack as Back } from "react-icons/io";
+import { BiSolidBasketball } from "react-icons/bi";
 
 function Dropdown(props) {
   const Navbar = (props) => {
@@ -127,7 +127,7 @@ function Dropdown(props) {
             </DropdownItem>
             <DropdownItemForGetStarted
               goToMenu="body"
-              leftIcon={<Octopus />}
+              leftIcon={<BiSolidBasketball />}
               closeDropdown={props.closeDropdown}
             >
               Get Started

@@ -10,19 +10,21 @@ const Footer = () => {
         <h3 className="footer-links">
           <Link to="/">Masjid Omar</Link>
         </h3>
-        <ul className="footer-links">
-          <li>
-            <Link to="/ContactUs">Contact Us</Link>
-          </li>
-          <li>
-            <Link to="/privacy-policy">Privacy Policy</Link>{" "}
-            {/* Update this line */}
-          </li>
-          <li>
-            <Link to="/terms-and-conditions">Terms & Conditions</Link>{" "}
-            {/* Update this line */}
-          </li>
-        </ul>
+
+        <Link to="/ContactUs">Contact Us</Link>
+
+        <p>&copy; 2023 All Rights Reserved</p>
+        <p>
+          Built, Designed and Developed By{" "}
+          <a
+            href="https://www.omar-fares.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "underline" }}
+          >
+            Omar Fares
+          </a>
+        </p>
       </div>
     </footer>
   );

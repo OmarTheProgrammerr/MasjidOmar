@@ -34,7 +34,7 @@ const Body = () => {
           the tournament.
         </li>
         <li>
-          Each team must consist of a minimum of 5 players and a maximum of 12
+          Each team must consist of a minimum of 4 players and a maximum of 7
           players.
         </li>
         <li>
@@ -43,7 +43,8 @@ const Body = () => {
         </li>
         <li>
           Players can only play for one team throughout the tournament.
-          Transfers to other teams after registration are not allowed.
+          Transfers to other teams after registration are only allowed after
+          contacting Neil Odeh.
         </li>
         <li>
           All games will be conducted according to standard FIBA rules unless
@@ -67,13 +68,8 @@ const Body = () => {
           should be raised with tournament organizers as soon as possible.
         </li>
         <li>
-          All participants are required to follow safety instructions and
-          guidelines provided.
-        </li>
-        <li>
           Teams or players that wish to withdraw from the tournament must notify
-          the organizers at the earliest. No refunds will be provided for
-          cancellations.
+          the organizers at the earliest.
         </li>
         <li>
           All participants are expected to adhere to the current COVID-19

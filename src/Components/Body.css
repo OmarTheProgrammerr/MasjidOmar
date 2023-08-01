@@ -66,10 +66,14 @@
   text-align: left;
   margin-bottom: 40px;
   font-size: 20px;
+  margin-left: 30px;
+  list-style: disc;
 }
 
 .masjid {
   margin-bottom: 50px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 .intro {
   font-size: 23px;
