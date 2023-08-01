@@ -18,6 +18,8 @@ const Header = () => {
   const [contactUsColor, setContactUsColor] = useState("white");
   const [donationColor, setDonationColor] = useState("white");
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     if (text.length < message.length) {
       setTimeout(() => {
@@ -25,6 +27,18 @@ const Header = () => {
       }, speed);
     }
   }, [text]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const checkScroll = () => {
@@ -42,47 +56,51 @@ const Header = () => {
   return (
     <div className="background">
       <header className="header">
-        <div className="logo">
-          <PiMosqueLight />
-          Masjid Omar
+        <div className="logoContainer">
+          <PiMosqueLight size={30} className="logomos" />
+          <div className="logo">Masjid Omar</div>
         </div>
         <nav>
-          <Link
-            activeClass="active"
-            to="body"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-            className="header-link"
-            onMouseEnter={() => setGetStartedColor("black")}
-            onMouseLeave={() => setGetStartedColor("white")}
-          >
-            <GoArrowUpLeft
-              size={25}
-              color={getStartedColor}
-              className="GSArrow"
-            />
-            Get Started
-          </Link>
-          <RouterLink
-            activeClass="active"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-            className="header-link"
-            onMouseEnter={() => setContactUsColor("black")}
-            onMouseLeave={() => setContactUsColor("white")}
-            to="/ContactUs"
-          >
-            <GoBell
-              size={25}
-              color={contactUsColor}
-              className="ContactUsArrow"
-            />
-            Contact Us
-          </RouterLink>
+          {windowWidth > 690 && (
+            <>
+              <Link
+                activeClass="active"
+                to="body"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                className="header-link"
+                onMouseEnter={() => setGetStartedColor("black")}
+                onMouseLeave={() => setGetStartedColor("white")}
+              >
+                <GoArrowUpLeft
+                  size={25}
+                  color={getStartedColor}
+                  className="GSArrow"
+                />
+                Get Started
+              </Link>
+              <RouterLink
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                className="header-link"
+                onMouseEnter={() => setContactUsColor("black")}
+                onMouseLeave={() => setContactUsColor("white")}
+                to="/ContactUs"
+              >
+                <GoBell
+                  size={25}
+                  color={contactUsColor}
+                  className="ContactUsArrow"
+                />
+                Contact Us
+              </RouterLink>
+            </>
+          )}
         </nav>
       </header>
       <div className="typing-text">

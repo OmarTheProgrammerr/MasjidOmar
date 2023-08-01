@@ -1,0 +1,204 @@
+.overlay {
+  font-size: 22px;
+  padding: 18px 24px;
+  /* box-shadow: 0 8px 10px rgb(0 0 0 / 0.2); */
+  position: absolute;
+  top: -12px;
+  left: 0px;
+  z-index: 1000;
+}
+
+.burger {
+  display: inline-block;
+  display: inline;
+  cursor: pointer;
+}
+
+.MyName {
+  margin: 20px;
+  cursor: pointer;
+}
+
+:root {
+  --text-color: #dadce1;
+  --border: 1px solid #474a4d;
+  --border-radius: 8px;
+  --speed: 500ms;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/* Top Navigation Bar */
+
+/* <nav> */
+.navbar {
+  height: var(--nav-size);
+  padding: 0 1rem;
+}
+
+/* <ul> */
+.navbar-nav {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* <li> */
+.nav-item {
+  width: calc(var(--nav-size) * 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -25px;
+}
+
+/* Icon Button */
+.icon-button {
+  --button-size: calc(var(--nav-size) * 0.9);
+  width: var(--button-size);
+  height: var(--button-size);
+  background-color: #484a4d;
+  border-radius: 50%;
+  padding: 5px;
+  color: red;
+  margin-right: 10px;
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+}
+.icon-button-inside {
+  --button-size: calc(var(--nav-size) * 0.5);
+  width: var(--button-size);
+  height: var(--button-size);
+  background-color: #484a4d;
+  border-radius: 50%;
+  padding: 5px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+}
+
+.icon-button:hover {
+  filter: brightness(1.2);
+  text-decoration: none;
+  color: black;
+  /* margin-top: 10px;    it would be coool if i can add a margin to them    it would like nicee*/
+}
+
+.icon-button svg {
+  fill: var(--text-color);
+  width: 30px;
+  height: 30px;
+}
+
+/* Dropdown Menu */
+
+.dropdown {
+  position: absolute;
+  background-color: black;
+  top: 88px;
+  left: 194px; /* dfgsdfgsdfgdfffgs */
+  width: 412px;
+  box-shadow: 2px 8px 8px rgb(0 0 0 / 0.2);
+  transform: translateX(-45%);
+  /* background-image: linear-gradient(
+      to right,
+      rgb(95, 230, 95),
+      rgb(95, 220, 95)
+    ); */
+  padding: 1rem;
+  overflow: hidden;
+  transition: height var(--speed) ease;
+}
+
+.menu {
+  width: 100%;
+  color: black;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  transition: background var(--speed);
+  padding: 0.5rem;
+  text-decoration: none;
+  color: white;
+}
+
+.menu-item .icon-button {
+  margin-right: 0.5rem;
+}
+
+.menu-item .icon-button:hover {
+  filter: none;
+  text-decoration: none;
+  color: black;
+}
+
+.menu-item:hover {
+  background-color: white;
+  text-decoration: none;
+  color: black;
+}
+
+.icon-right {
+  margin-left: auto;
+}
+
+/* CSSTransition classes  */
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-110%);
+}
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+.menu-primary-exit {
+  position: absolute;
+}
+.menu-primary-exit-active {
+  transform: translateX(-110%);
+  transition: all var(--speed) ease;
+}
+
+.menu-secondary-enter {
+  transform: translateX(110%);
+}
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+
+.menu-secondary-exit-active {
+  transform: translateX(110%);
+  transition: all var(--speed) ease;
+}
+
+@media (min-width: 660px) {
+  .dropdown {
+    display: none;
+  }
+
+  .burger {
+    display: none;
+  }
+  .nav-item {
+    display: none;
+  }
+}

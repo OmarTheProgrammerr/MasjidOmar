@@ -8,6 +8,7 @@ import TeamRegistration from "./Components/TeamRegistration";
 import Teams from "./Components/Teams";
 import ContactUs from "./Components/ContactUs";
 import Donation from "./Components/Donation";
+import Dropdown from "./Components/Dropdown";
 import Footer from "./Components/Footer";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               element={
                 <>
                   <Header />
+                  <Dropdown />
                   <Body />
                 </>
               }
