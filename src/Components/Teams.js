@@ -23,7 +23,7 @@ import StarIcon from '@mui/icons-material/Star';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API = process.env.REACT_APP_API_URL || '';
 
 const sportConfig = {
   basketball: { color: '#E65100', icon: <SportsBasketballIcon />, label: 'Basketball' },

@@ -42,7 +42,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API = process.env.REACT_APP_API_URL || '';
 
 // ─── Add Team Form ───────────────────────────────────────────────────────────
 

@@ -21,7 +21,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import axios from 'axios';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API = process.env.REACT_APP_API_URL || '';
 
 const statusConfig = {
   scheduled: { label: 'Scheduled', color: '#1565C0', bg: '#E3F2FD' },
