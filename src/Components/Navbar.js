@@ -15,7 +15,6 @@ import {
   Chip,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
