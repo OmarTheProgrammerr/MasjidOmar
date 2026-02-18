@@ -18,6 +18,14 @@ async function connectDB() {
   return cachedDb;
 }
 
+// Auth routes first — they only need env vars, not the DB
+app.use('/api/auth', require('./routes/auth'));
+
+app.get('/api/health', (req, res) =>
+  res.json({ status: 'ok', admin: !!process.env.ADMIN_USERNAME })
+);
+
+// DB middleware only for routes that need it
 app.use(async (req, res, next) => {
   try {
     req.db = await connectDB();
@@ -27,11 +35,8 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/api/auth', require('./routes/auth'));
 app.use('/api/teams', require('./routes/teams'));
 app.use('/api/matches', require('./routes/matches'));
-
-app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 // Export for Vercel — do NOT call app.listen()
 module.exports = app;
