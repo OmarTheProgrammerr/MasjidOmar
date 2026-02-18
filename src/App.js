@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { ThemeProvider, createTheme, CssBaseline, Box, Typography } from '@mui/material';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
@@ -81,6 +81,34 @@ export default function App() {
             />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+
+          <Box
+            component="footer"
+            sx={{
+              textAlign: 'center',
+              py: 2.5,
+              backgroundColor: '#124A28',
+              color: 'rgba(255,255,255,0.7)',
+            }}
+          >
+            <Typography variant="body2">
+              Built and maintained by{' '}
+              <Box
+                component="a"
+                href="https://www.linkedin.com/in/omar-fares02/"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: '#C9A84C',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  '&:hover': { textDecoration: 'underline' },
+                }}
+              >
+                Omar Fares
+              </Box>
+            </Typography>
+          </Box>
         </BrowserRouter>
       </AuthProvider>
     </ThemeProvider>
