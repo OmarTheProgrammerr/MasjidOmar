@@ -8,6 +8,7 @@ import Login from './Components/Login';
 import Teams from './Components/Teams';
 import Matches from './Components/Matches';
 import AdminDashboard from './Components/AdminDashboard';
+import RegisterTeam from './Components/RegisterTeam';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 const theme = createTheme({
@@ -71,6 +72,7 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/teams" element={<Teams />} />
             <Route path="/matches" element={<Matches />} />
+            <Route path="/register-team" element={<RegisterTeam />} />
             <Route
               path="/admin"
               element={

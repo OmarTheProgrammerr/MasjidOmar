@@ -35,8 +35,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
+import SportsTennisIcon from '@mui/icons-material/SportsTennis';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import GroupsIcon from '@mui/icons-material/Groups';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import PendingIcon from '@mui/icons-material/Pending';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
@@ -119,6 +122,12 @@ function AddTeamForm({ onSuccess }) {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <SportsVolleyballIcon sx={{ color: '#1565C0', fontSize: 20 }} />
                       Volleyball
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="pingpong">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <SportsTennisIcon sx={{ color: '#6A1B9A', fontSize: 20 }} />
+                      Ping Pong
                     </Box>
                   </MenuItem>
                 </Select>
@@ -239,6 +248,12 @@ function AddMatchForm({ teams, onSuccess }) {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <SportsVolleyballIcon sx={{ color: '#1565C0', fontSize: 20 }} />
                       Volleyball
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value="pingpong">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <SportsTennisIcon sx={{ color: '#6A1B9A', fontSize: 20 }} />
+                      Ping Pong
                     </Box>
                   </MenuItem>
                 </Select>
@@ -416,6 +431,118 @@ function UpdateScoreDialog({ match, open, onClose, onUpdate }) {
   );
 }
 
+// ─── Pending Teams ───────────────────────────────────────────────────────────
+
+function PendingTeams({ onApprove, getToken, sportIcon }) {
+  const [pending, setPending] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [snack, setSnack] = useState('');
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${API}/api/teams?status=pending`, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      });
+      setPending(res.data);
+    } catch {
+      setPending([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [getToken]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const approve = async (id) => {
+    await axios.patch(`${API}/api/teams/${id}/approve`, {}, {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    });
+    setSnack('Team approved!');
+    load();
+    onApprove();
+  };
+
+  const reject = async (id, name) => {
+    if (!window.confirm(`Reject and delete "${name}"?`)) return;
+    await axios.delete(`${API}/api/teams/${id}`, {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    });
+    setSnack('Team rejected and removed.');
+    load();
+    onApprove();
+  };
+
+  if (loading) return <Box sx={{ textAlign: 'center', py: 6 }}><CircularProgress /></Box>;
+
+  return (
+    <Card>
+      <CardContent sx={{ p: 0 }}>
+        {pending.length === 0 ? (
+          <Box sx={{ textAlign: 'center', py: 6 }}>
+            <CheckCircleIcon sx={{ fontSize: 48, color: 'success.main', mb: 1 }} />
+            <Typography color="text.secondary">No pending team registrations.</Typography>
+          </Box>
+        ) : (
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: '#F4F6F4' }}>
+                  <TableCell><strong>Team</strong></TableCell>
+                  <TableCell><strong>Sport</strong></TableCell>
+                  <TableCell><strong>Captain</strong></TableCell>
+                  <TableCell><strong>Contact</strong></TableCell>
+                  <TableCell><strong>Players</strong></TableCell>
+                  <TableCell align="right"><strong>Action</strong></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {pending.map((team) => (
+                  <TableRow key={team._id} hover>
+                    <TableCell fontWeight={600}>{team.name}</TableCell>
+                    <TableCell>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                        {sportIcon(team.sport)}
+                        <Typography variant="body2" sx={{ textTransform: 'capitalize' }}>
+                          {team.sport === 'pingpong' ? 'Ping Pong' : team.sport}
+                        </Typography>
+                      </Box>
+                    </TableCell>
+                    <TableCell>{team.captain}</TableCell>
+                    <TableCell>{team.contact || '-'}</TableCell>
+                    <TableCell>{team.players?.length || 0}</TableCell>
+                    <TableCell align="right">
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="success"
+                        startIcon={<CheckCircleIcon />}
+                        onClick={() => approve(team._id)}
+                        sx={{ mr: 1 }}
+                      >
+                        Approve
+                      </Button>
+                      <Button
+                        size="small"
+                        variant="outlined"
+                        color="error"
+                        onClick={() => reject(team._id, team.name)}
+                      >
+                        Reject
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      </CardContent>
+      <Snackbar open={!!snack} autoHideDuration={3000} onClose={() => setSnack('')} message={snack} />
+    </Card>
+  );
+}
+
 // ─── Main Admin Dashboard ────────────────────────────────────────────────────
 
 export default function AdminDashboard() {
@@ -463,12 +590,11 @@ export default function AdminDashboard() {
     loadData();
   };
 
-  const sportIcon = (sport) =>
-    sport === 'basketball' ? (
-      <SportsBasketballIcon sx={{ color: '#E65100', fontSize: 18 }} />
-    ) : (
-      <SportsVolleyballIcon sx={{ color: '#1565C0', fontSize: 18 }} />
-    );
+  const sportIcon = (sport) => {
+    if (sport === 'basketball') return <SportsBasketballIcon sx={{ color: '#E65100', fontSize: 18 }} />;
+    if (sport === 'volleyball') return <SportsVolleyballIcon sx={{ color: '#1565C0', fontSize: 18 }} />;
+    return <SportsTennisIcon sx={{ color: '#6A1B9A', fontSize: 18 }} />;
+  };
 
   return (
     <Box sx={{ backgroundColor: '#F4F6F4', minHeight: 'calc(100vh - 64px)', pb: 8 }}>
@@ -502,6 +628,7 @@ export default function AdminDashboard() {
           onChange={(_, v) => setTab(v)}
           sx={{ mb: 3, backgroundColor: '#fff', borderRadius: 2, px: 1 }}
         >
+          <Tab label="Pending Teams" icon={<PendingIcon />} iconPosition="start" />
           <Tab label="Add Team" />
           <Tab label="Manage Teams" />
           <Tab label="Schedule Match" />
@@ -514,9 +641,11 @@ export default function AdminDashboard() {
           </Box>
         ) : (
           <>
-            {tab === 0 && <AddTeamForm onSuccess={loadData} />}
+            {tab === 0 && <PendingTeams onApprove={loadData} getToken={getToken} sportIcon={sportIcon} />}
 
-            {tab === 1 && (
+            {tab === 1 && <AddTeamForm onSuccess={loadData} />}
+
+            {tab === 2 && (
               <Card>
                 <CardContent sx={{ p: 0 }}>
                   <TableContainer>
@@ -545,7 +674,7 @@ export default function AdminDashboard() {
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                   {sportIcon(team.sport)}
                                   <Typography variant="body2" sx={{ textTransform: 'capitalize' }}>
-                                    {team.sport}
+                                    {team.sport === 'pingpong' ? 'Ping Pong' : team.sport}
                                   </Typography>
                                 </Box>
                               </TableCell>
@@ -570,9 +699,9 @@ export default function AdminDashboard() {
               </Card>
             )}
 
-            {tab === 2 && <AddMatchForm teams={teams} onSuccess={loadData} />}
+            {tab === 3 && <AddMatchForm teams={teams} onSuccess={loadData} />}
 
-            {tab === 3 && (
+            {tab === 4 && (
               <Card>
                 <CardContent sx={{ p: 0 }}>
                   <TableContainer>

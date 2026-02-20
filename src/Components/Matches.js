@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
+import SportsTennisIcon from '@mui/icons-material/SportsTennis';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -32,6 +33,7 @@ const statusConfig = {
 const sportConfig = {
   basketball: { color: '#E65100', icon: <SportsBasketballIcon fontSize="small" /> },
   volleyball: { color: '#1565C0', icon: <SportsVolleyballIcon fontSize="small" /> },
+  pingpong: { color: '#6A1B9A', icon: <SportsTennisIcon fontSize="small" /> },
 };
 
 function MatchCard({ match }) {
@@ -165,6 +167,9 @@ export default function Matches() {
             </ToggleButton>
             <ToggleButton value="volleyball">
               <SportsVolleyballIcon sx={{ mr: 0.5, fontSize: 18 }} /> Volleyball
+            </ToggleButton>
+            <ToggleButton value="pingpong">
+              <SportsTennisIcon sx={{ mr: 0.5, fontSize: 18 }} /> Ping Pong
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>

@@ -26,6 +26,7 @@ const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Teams', path: '/teams' },
   { label: 'Matches', path: '/matches' },
+  { label: 'Register Team', path: '/register-team' },
 ];
 
 export default function Navbar() {

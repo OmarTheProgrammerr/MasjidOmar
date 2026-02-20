@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
+import SportsTennisIcon from '@mui/icons-material/SportsTennis';
 import GroupsIcon from '@mui/icons-material/Groups';
 import StarIcon from '@mui/icons-material/Star';
 import SearchIcon from '@mui/icons-material/Search';
@@ -28,6 +29,7 @@ const API = process.env.REACT_APP_API_URL || '';
 const sportConfig = {
   basketball: { color: '#E65100', icon: <SportsBasketballIcon />, label: 'Basketball' },
   volleyball: { color: '#1565C0', icon: <SportsVolleyballIcon />, label: 'Volleyball' },
+  pingpong: { color: '#6A1B9A', icon: <SportsTennisIcon />, label: 'Ping Pong' },
 };
 
 export default function Teams() {
@@ -82,6 +84,9 @@ export default function Teams() {
             </ToggleButton>
             <ToggleButton value="volleyball">
               <SportsVolleyballIcon sx={{ mr: 0.5, fontSize: 18 }} /> Volleyball
+            </ToggleButton>
+            <ToggleButton value="pingpong">
+              <SportsTennisIcon sx={{ mr: 0.5, fontSize: 18 }} /> Ping Pong
             </ToggleButton>
           </ToggleButtonGroup>
 
